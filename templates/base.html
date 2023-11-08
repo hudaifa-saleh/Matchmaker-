@@ -1,0 +1,63 @@
+{% load staticfiles %}
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="icon" href="../../favicon.ico">
+
+    <title>{% block head_title %}Matchmaker 2 {% endblock %}</title>
+
+    {% include 'head_css.html' %}
+
+      <style>
+      .alert-top-message {
+        margin-top: -19px;
+      }
+      {% block style %}{% endblock %}
+
+
+      </style>
+
+
+
+  </head>
+
+  <body>
+  {% include 'navbar.html' %}
+  {% if messages %}
+  <div class='alert alert-success alert-top-message'>
+  <div class='container text-center'>
+     {% for message in messages %}
+    {% if "safe" in message.tags %}{{ message|safe }}{% else %}{{ message }} {% endif %}<br/>
+    {% endfor %}
+  </div>
+  </div>
+{% endif %}
+
+
+
+{% block jumbotron %}
+          
+            {% endblock %}
+    <div class="container">
+            
+
+          
+            {% block content %}
+
+            {% endblock %}
+              
+
+    </div> <!-- /container -->
+
+    {% include "javascript.html" %}
+    
+    
+  </body>
+</html>
