@@ -1,12 +1,15 @@
 from django.contrib import admin
+from django.contrib.auth.admin import UserAdmin
 
-from .forms import SignUpForm
-from .models import SignUp
-
-
-class SignUpAdmin(admin.ModelAdmin):
-    list_display = ["__str__", "timestamp", "updated"]
-    form = SignUpForm
+from .forms import CustomUserCreationForm, CustomUserChangeForm
+from .models import User
 
 
-admin.site.register(SignUp, SignUpAdmin)
+class CustomUserAdmin(UserAdmin):
+    add_form = CustomUserCreationForm
+    form = CustomUserChangeForm
+    model = User
+    list_display = ['email', 'username', ]
+
+
+admin.site.register(User, CustomUserAdmin)
